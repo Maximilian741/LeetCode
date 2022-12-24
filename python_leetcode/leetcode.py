@@ -60,5 +60,65 @@ class Solution:
         #Return the total
         return total
 
+        def reverseInteger(self, x: int) -> int:
+            #The code below does not work per the specified instructions.  This does indeed reverse the ordering of the inegers, however
+            #it does not account for the fact that reversing the integer would remove it from it's 32 bit signed integer range.
+            #which was specified in the directions.
+            if x < 0:
+                return -1 * int(str(-x)[::-1])
+            else:
+                return int(str(x)[::-1])
+
+        #all i did here was add a check to see if the integer was within the 32 bit signed integer range.
+        #this check will be performed in linear time, so it will not affect the overall time complexity of the algorithm.
+        def reverseIntegerV2(self, x: int) -> int:
+            if x.bit_length() > 31:
+                return 0
+            else:
+                if x < 0:
+                    return -1 * int(str(-x)[::-1])
+                else:
+                    return int(str(x)[::-1])
+
+        #third attempt at the reverse intger problem.
+        def reverseIntegerV3(self, x: int) -> int:
+            #if the integer is negative, multiply it by -1 and then reverse it.
+            #if the integer is positive, just reverse it.
+            #if the reversed integer is greater than 2^31 - 1, return 0
+            #if the reversed integer is less than -2^31, return 0
+            #if the reversed integer is within the range, return the reversed integer
+            if x < 0:
+                reversedInteger = -1 * int(str(-x)[::-1])
+            else:
+                reversedInteger = int(str(x)[::-1])
+            if reversedInteger.bit_length() > 31:
+                return 0
+            else:
+                return reversedInteger
+
+            #fuck this shit.  I'm done with this problem.
+            #given a 32 bit signed integer, reverse the digits of the integer.
+            #if the reversed integer is greater than 2^31 - 1, return 0
+            #if the reversed integer is less than -2^31, return 0
+            #if the reversed integer is within the range, return the reversed integer
+            #if the integer is negative, multiply it by -1 and then reverse it.
+            #if the integer is positive, just reverse it.
+            def reverseIntegerV4(self, x: int) -> int:       
+                if x.bit_length() > 31 & x.bit_length() < 0:
+                    return 0
+                elif x.bit_length() == 31:
+                    return 0
+                else:
+                    if x < 0:
+                        return -1 * int(str(-x)[::-1])
+                    else:
+                        return int(str(x)[::-1]) 
+
+                        
+
+
+
+
+
         
 
